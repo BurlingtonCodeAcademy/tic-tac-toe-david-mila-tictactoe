@@ -60,18 +60,15 @@ function clicked(event) {
         boardArr.splice(index, 1)
     }
 
-    
 
     if (currentPlayer === 1) {
         event.target.innerHTML = playerOne
         event.target.style.color = "red"
         currentPlayer += 1
         playerOneArr.push(cellNumber)
-
-        let win = checkWin(playerOneArr)
-    
-        if (win === true) {
+        if (checkWin(playerOneArr) === true) {
             gameStatus.innerHTML = `Congratulations ${playerOne}! You won!`
+            return
         }
 
     } else {
@@ -80,10 +77,10 @@ function clicked(event) {
         currentPlayer -= 1
         playerTwoArr.push(cellNumber)
         if (checkWin(playerTwoArr) === true) {
-            gameStatus.innerHTML = `Congratulations ${playerOne}! You won!`
+            gameStatus.innerHTML = `Congratulations ${playerTwo}! You won!`
+            return
         }
     }
-
 
     showPlayer()
 }
@@ -101,6 +98,7 @@ function checkWin(currentPlayerArr) {
             }
         }
     })
+    return winner
 }
 
 
