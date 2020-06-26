@@ -4,6 +4,7 @@ let gameStatus = document.getElementById('game-status')
 let startButton = document.getElementById('start')
 let cells = document.getElementsByClassName('cell')
 
+
 //variable for players
 let playerOne = "X"
 let playerTwo = "O"
@@ -17,7 +18,6 @@ let boardArr = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 let playerOneArr = []
 let playerTwoArr = []
 
-let winner = false
 
 //start function - when start button gets clicked
 function start() {
@@ -60,13 +60,17 @@ function clicked(event) {
         boardArr.splice(index, 1)
     }
 
+    
+
     if (currentPlayer === 1) {
         event.target.innerHTML = playerOne
         event.target.style.color = "red"
         currentPlayer += 1
         playerOneArr.push(cellNumber)
-        checkWin(playerOneArr)
-        if (winner === true) {
+
+        let win = checkWin(playerOneArr)
+    
+        if (win === true) {
             gameStatus.innerHTML = `Congratulations ${playerOne}! You won!`
         }
 
@@ -75,27 +79,28 @@ function clicked(event) {
         event.target.style.color = "blue"
         currentPlayer -= 1
         playerTwoArr.push(cellNumber)
-        checkWin(playerOneArr)
-        if (winner === true) {
-            gameStatus.innerHTML = `Congratulations ${playerTwo}! You won!`
+        if (checkWin(playerTwoArr) === true) {
+            gameStatus.innerHTML = `Congratulations ${playerOne}! You won!`
         }
     }
+
+
     showPlayer()
 }
 
 //function to check for wins
 function checkWin(currentPlayerArr) {
-
+    let winner = false
     wins.forEach((win) => {
         if (currentPlayerArr.includes(win[0])) {
             if (currentPlayerArr.includes(win[1])) {
                 if (currentPlayerArr.includes(win[2])) {
-                    console.log("You Won!")   
+                    console.log("You Won!")
+                    winner = true
                 }
             }
         }
     })
-    return winner = true 
 }
 
 
