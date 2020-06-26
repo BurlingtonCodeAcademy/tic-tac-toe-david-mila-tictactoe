@@ -43,7 +43,7 @@ function start() {
     //clock
     interval = setInterval(() => {updateClock()}, 1000)
     clockCount = 0
-    clock.innerHTML = '0'
+    clock.innerHTML = `Time Elapse: 0 seconds`
     //two players
     PlayerOneName  = (PlayerOneName.value === "" ? "X" : PlayerOneName.value)
     PlayerTwoName  = (PlayerTwoName.value === "" ? "X" : PlayerTwoName.value)
@@ -57,7 +57,7 @@ startButton.addEventListener('click', start);
 //function to update clock
 function updateClock () {
     clockCount++
-    clock.innerHTML = clockCount
+    clock.innerHTML = `Time Elapse: ${clockCount} seconds`
 }
 
 //function to change status
