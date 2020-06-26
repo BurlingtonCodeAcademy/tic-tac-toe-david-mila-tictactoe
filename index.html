@@ -1,23 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style_main.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
   <title>Tic Tac Toe</title>
 </head>
+
 <body>
   <h1>Tic Tac Toe!</h1>
-  <div id='board'>
-    <div class='cell'></div>
-    <div class='cell'></div>
-    <div class='cell'></div>
-    <div class='cell'></div>
-    <div class='cell'></div>
-    <div class='cell'></div>
-    <div class='cell'></div>
-    <div class='cell'></div>
-    <div class='cell'></div>
+  <div class="board-container flex-containter flex-column">
+    <div class=winnerDiv>
+      <div class=winner>
+        <button class='reset'>Reset</button>
+      </div>
+    </div>
+    <div class='board flex-container'>
+      <div class='square'></div>
+      <div class='square'></div>
+      <div class='square'></div>
+      <div class='square'></div>
+      <div class='square'></div>
+      <div class='square'></div>
+      <div class='square'></div>
+      <div class='square'></div>
+      <div class='square'></div>
+    </div>
+    <button id='start'>Start Game</button>
   </div>
-  <button id='start'>Start Game</button>
+  
+  <script src=app_main.js></script>
 </body>
+
 </html>
