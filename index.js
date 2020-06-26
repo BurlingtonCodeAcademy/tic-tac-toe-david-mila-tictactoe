@@ -3,6 +3,9 @@ let board = document.getElementById('board')
 let gameStatus = document.getElementById('game-status')
 let startButton = document.getElementById('start')
 let cells = document.getElementsByClassName('cell')
+let PlayerOneName = document.getElementById('PlayerOneName')
+let PlayerTwoName = document.getElementById('PlayerTwoName')
+let clock = document.getElementById('clock')
 
 
 //variable for players
@@ -17,14 +20,12 @@ let wins = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0
 let boardArr = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 let playerOneArr = []
 let playerTwoArr = []
-
-
+let winCom = []
+let clockCount = 0
 //start function - when start button gets clicked
 function start() {
     currentPlayer = 1
     startButton.disabled = true
-
-    
 
     showPlayer()
 
@@ -34,15 +35,30 @@ function start() {
         cell.innerHTML = ""
         cell.style.backgroundColor = "white"
     }
-
+    //resetting arrays
     boardArr = [0, 1, 2, 3, 4, 5, 6, 7, 8]
     playerOneArr = []
     playerTwoArr = []
     winCom = []
+    //clock
+    interval = setInterval(() => {updateClock()}, 1000)
+    clockCount = 0
+    clock.innerHTML = '0'
+    //two players
+    PlayerOneName  = (PlayerOneName.value === "" ? "X" : PlayerOneName.value)
+    PlayerTwoName  = (PlayerTwoName.value === "" ? "X" : PlayerTwoName.value)
+    // PlayerOneName.disabled = true 
+    // PlayerTwoName.disabled = true
 }
 
 //adding event listener to start button
 startButton.addEventListener('click', start);
+
+//function to update clock
+function updateClock () {
+    clockCount++
+    clock.innerHTML = clockCount
+}
 
 //function to change status
 function showPlayer() {
@@ -58,7 +74,7 @@ function alreadyClicked() {
     gameStatus.innerHTML = `Please select an empty cell.`
 }
 
-let winCom = []
+
 //function to check for wins
 function checkWin(currentPlayerArr) {
 
@@ -78,6 +94,14 @@ function checkWin(currentPlayerArr) {
     return winner
 }
 
+//prevents from clicking after win
+function reStart() {
+    for (let cell of cells) {
+        cell.removeEventListener('click', clicked)
+        cell.removeEventListener('click', alreadyClicked)
+    }
+    startButton.disabled = false
+}
 
 //makeMove function - when player clicks on cells
 function clicked(event) {
@@ -99,6 +123,7 @@ function clicked(event) {
         playerOneArr.push(cellNumber)
         if (checkWin(playerOneArr) === true) {
             gameStatus.innerHTML = `Congratulations ${playerOne}! You won!`
+            clearInterval(interval)
 
             for (let cell of cells) {
                 console.log(cell.id)
@@ -115,6 +140,7 @@ function clicked(event) {
         playerTwoArr.push(cellNumber)
         if (checkWin(playerTwoArr) === true) {
             gameStatus.innerHTML = `Congratulations ${playerTwo}! You won!`
+            clearInterval(interval)
 
             for (let cell of cells) {
                 console.log(cell.id)
@@ -129,15 +155,7 @@ function clicked(event) {
 }
 
 
-function reStart() {
-    for (let cell of cells) {
-        cell.removeEventListener('click', clicked)
-        cell.removeEventListener('click', alreadyClicked)
-    }
 
-    startButton.disabled = false
-    //gameStatus.innerHTML = `Play again!`
-}
 
 
 
