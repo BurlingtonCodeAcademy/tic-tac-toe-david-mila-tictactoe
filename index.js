@@ -9,7 +9,7 @@ let cells = document.getElementsByClassName('cell')
 let playerOne = "X"
 let playerTwo = "O"
 //variable to keep track of moves made
-let movesMade = 0
+//let movesMade = 0
 //variable to keep track of players
 let currentPlayer = 1
 //winning combos
@@ -23,11 +23,22 @@ let playerTwoArr = []
 function start() {
     currentPlayer = 1
     startButton.disabled = true
+
+    
+
     showPlayer()
+
     //adding event listener to cell class
     for (let cell of cells) {
         cell.addEventListener('click', clicked)
+        cell.innerHTML = ""
+        cell.style.backgroundColor = "white"
     }
+
+    boardArr = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+    playerOneArr = []
+    playerTwoArr = []
+    winCom = []
 }
 
 //adding event listener to start button
