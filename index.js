@@ -110,6 +110,7 @@ function clicked(event) {
                 if (winCom.includes(+cell.id))
                     cell.style.backgroundColor = "green"
             }
+
             return reStart()
         }
     }
@@ -118,15 +119,13 @@ function clicked(event) {
 
 
 function reStart() {
-
     for (let cell of cells) {
-        cell.event.target.removeEventListener('click', clicked)
-        cell.event.target.removeEventListener('click', alreadyClicked)
+        cell.removeEventListener('click', clicked)
+        cell.removeEventListener('click', alreadyClicked)
     }
-    startButton.disabled = false
-    gameStatus.innerHTML = `Play again!`
 
-    start()
+    startButton.disabled = false
+    //gameStatus.innerHTML = `Play again!`
 }
 
 
