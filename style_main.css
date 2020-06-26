@@ -1,0 +1,48 @@
+body h1 {
+    display: flex;
+    justify-content: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.flex-container{
+    display: flex;  
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.board-container {               /* This container holds the entire board, not to be confused with the board div class which holds the squares inside the board */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.board {
+    display: flex;
+    flex-wrap: wrap;
+    width: 618px;
+     
+}
+
+.winnerDiv {
+    display: flex;
+    justify-content: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.square {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    width: 200px;
+    border: 3px solid black;  
+    font-size: 56px;
+}
+
+.square:hover {
+    background-color: gray;
+}
