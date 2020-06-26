@@ -47,6 +47,27 @@ function alreadyClicked() {
     gameStatus.innerHTML = `Please select an empty cell.`
 }
 
+let winCom = []
+//function to check for wins
+function checkWin(currentPlayerArr) {
+
+    let winner = false
+    wins.forEach((win) => {
+        if (currentPlayerArr.includes(win[0])) {
+            if (currentPlayerArr.includes(win[1])) {
+                if (currentPlayerArr.includes(win[2])) {
+                    winCom.push(...win)
+                    console.log(winCom)
+                    console.log("You Won!")
+                    winner = true
+                }
+            }
+        }
+    })
+    return winner
+}
+
+
 //makeMove function - when player clicks on cells
 function clicked(event) {
     //movesMade += 1 - not using this variable right now
@@ -60,7 +81,6 @@ function clicked(event) {
         boardArr.splice(index, 1)
     }
 
-
     if (currentPlayer === 1) {
         event.target.innerHTML = playerOne
         event.target.style.color = "red"
@@ -68,7 +88,13 @@ function clicked(event) {
         playerOneArr.push(cellNumber)
         if (checkWin(playerOneArr) === true) {
             gameStatus.innerHTML = `Congratulations ${playerOne}! You won!`
-            return
+
+            for (let cell of cells) {
+                console.log(cell.id)
+                if (winCom.includes(+cell.id))
+                    cell.style.backgroundColor = "green"
+            }
+            return reStart()
         }
 
     } else {
@@ -78,28 +104,35 @@ function clicked(event) {
         playerTwoArr.push(cellNumber)
         if (checkWin(playerTwoArr) === true) {
             gameStatus.innerHTML = `Congratulations ${playerTwo}! You won!`
-            return
+
+            for (let cell of cells) {
+                console.log(cell.id)
+                if (winCom.includes(+cell.id))
+                    cell.style.backgroundColor = "green"
+            }
+            return reStart()
         }
     }
-
     showPlayer()
 }
 
-//function to check for wins
-function checkWin(currentPlayerArr) {
-    let winner = false
-    wins.forEach((win) => {
-        if (currentPlayerArr.includes(win[0])) {
-            if (currentPlayerArr.includes(win[1])) {
-                if (currentPlayerArr.includes(win[2])) {
-                    console.log("You Won!")
-                    winner = true
-                }
-            }
-        }
-    })
-    return winner
+
+function reStart() {
+
+    for (let cell of cells) {
+        cell.event.target.removeEventListener('click', clicked)
+        cell.event.target.removeEventListener('click', alreadyClicked)
+    }
+    startButton.disabled = false
+    gameStatus.innerHTML = `Play again!`
+
+    start()
 }
+
+
+
+
+
 
 
 

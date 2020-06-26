@@ -49,6 +49,17 @@ h1 {
       height: 200px;
   }
 
+  #player-names {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+
+  .playerNames {
+    width: 45%;
+  }
 
 
 
