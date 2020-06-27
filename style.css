@@ -54,13 +54,44 @@ h1 {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 25px;
   }
 
   .playerNames {
     width: 45%;
   }
 
+  .player-and-computer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 15px;
+    width: 58%;
+  }
+
+  #player-player:hover{
+  color: red;
+  }
+
+  #player-computer:hover{
+    color: red;
+    }
+
+  #player-computer{
+    width: 45%;
+    cursor: pointer;
+  }
+
+  #player-player{
+    padding-left: 15px;
+    width: 45%;
+    cursor: pointer;
+  }
+
+  #clock{
+    padding-top: 20px;
+  }
 
 
 
@@ -74,14 +105,4 @@ h1 {
 
 
 
-  /* display: grid;
-    background-color: rgba(236, 235, 234, 0.658);
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-    grid-gap: 0rem;
-    grid-template-areas:
-        " .          header           header            header             ."
-        "  .         board-container  board-container   board-container    ."
-        "  .         board-container  board-container   board-container    ."
-        "  .         board-container  board-container   board-container    ."
-        " .          footer           footer            footer             ."; */
+

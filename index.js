@@ -6,6 +6,8 @@ let cells = document.getElementsByClassName('cell')
 let playerOneName = document.getElementById('playerOneName')
 let playerTwoName = document.getElementById('playerTwoName')
 let clock = document.getElementById('clock')
+let playerPlayer = document.getElementById('player-player')
+let playerComputer = document.getElementById('player-computer')
 
 
 //variable for players
@@ -24,12 +26,13 @@ let winCom = []
 let clockCount = 0
 let playerOneDisplay = ""
 let playerTwoDisplay = ""
+
 //start function - when start button gets clicked
 function start() {
     currentPlayer = 1
     startButton.disabled = true
 
-    showPlayer()
+    
 
     //adding event listener to cell class
     for (let cell of cells) {
@@ -47,14 +50,35 @@ function start() {
     clockCount = 0
     clock.innerHTML = `Time Elapse: 0 seconds`
     //two players
+    console.log(playerOneName)
     playerOneDisplay = (playerOneName.value === "" ? "X" : playerOneName.value)
     playerTwoDisplay = (playerTwoName.value === "" ? "O" : playerTwoName.value)
     playerOneName.disabled = true
     playerTwoName.disabled = true
+    showPlayer()
 }
 
 //adding event listener to start button
 startButton.addEventListener('click', start);
+
+//adding event listener to player/computer
+playerComputer.addEventListener('click', disPlayerPlayer)
+
+//funtion to disable player vs player box
+function disPlayerPlayer() {
+    playerPlayer.style.display ="none"
+    startButton.disabled = false
+    playerTwoName.style.display = "none"
+}
+
+//adding event listener to player/player
+playerPlayer.addEventListener('click', disPlayerComputer)
+
+//funtion to disable player vs computer box
+function disPlayerComputer() {
+    playerComputer.style.display = "none"
+    startButton.disabled = false
+}
 
 //function to update clock
 function updateClock() {
@@ -116,10 +140,13 @@ function clicked(event) {
     let cellNumber = parseInt(event.target.id)
     let index = boardArr.indexOf(cellNumber)
 
+
     if (boardArr.includes(cellNumber)) {
         console.log(boardArr)
         boardArr.splice(index, 1)
     }
+
+    
 
     if (currentPlayer === 1) {
         event.target.innerHTML = playerOne
@@ -154,17 +181,23 @@ function clicked(event) {
                     cell.style.backgroundColor = "green"
             }
 
+
+
             return reStart()
         }
     }
 
     showPlayer()
+
+    if (boardArr.length === 0) {
+        gameStatus.innerHTML = `It's a draw`
+        clearInterval(interval)
+        startButton.disabled = false
+    }
+    
 }
 
-// if (boardArr = []) {
-//     gameStatus.innerHTML = `It's a draw`
-//     clearInterval(interval)
-//     startButton.disabled = false
+
 
 
 
