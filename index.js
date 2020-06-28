@@ -9,7 +9,6 @@ let clock = document.getElementById('clock')
 let playerPlayer = document.getElementById('player-player')
 let playerComputer = document.getElementById('player-computer')
 
-
 //variable for players
 let playerOne = "X"
 let playerTwo = "O"
@@ -31,8 +30,6 @@ let playerTwoDisplay = ""
 function start() {
     currentPlayer = 1
     startButton.disabled = true
-
-    
 
     //adding event listener to cell class
     for (let cell of cells) {
@@ -132,7 +129,7 @@ function reStart() {
     playerTwoName.value = ""
 }
 
-//makeMove function - when player clicks on cells
+//clicked function - when player clicks on cells
 function clicked(event) {
     //movesMade += 1 - not using this variable right now
     event.target.removeEventListener('click', clicked)
@@ -140,13 +137,11 @@ function clicked(event) {
     let cellNumber = parseInt(event.target.id)
     let index = boardArr.indexOf(cellNumber)
 
-
+//remove clicked cell from board array
     if (boardArr.includes(cellNumber)) {
         console.log(boardArr)
         boardArr.splice(index, 1)
     }
-
-    
 
     if (currentPlayer === 1) {
         event.target.innerHTML = playerOne
@@ -181,14 +176,12 @@ function clicked(event) {
                     cell.style.backgroundColor = "green"
             }
 
-
-
             return reStart()
         }
     }
 
     showPlayer()
-
+    //in case of a draw
     if (boardArr.length === 0) {
         gameStatus.innerHTML = `It's a draw`
         clearInterval(interval)
