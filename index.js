@@ -72,11 +72,11 @@ startButton.addEventListener('click', start);
 //adding event listener to player/computer
 playerComputer.addEventListener('click', disPlayerPlayer)
 
-//funtion to disable player vs player box
+//funtion to disable player vs player box when you click on player vs computer
 function disPlayerPlayer() {
-    // playerPlayer.style.display ="none"
+    // playerPlayer.style.display = false
     startButton.disabled = false
-    playerTwoName.style.display = "none"
+    playerTwoName.style.display = 'none'
     gameMode = 'pvc' // set the gameMode to player vs computer
     console.log(`THE GAMEMODE IS NOW: ${gameMode}`)
 }
@@ -84,9 +84,10 @@ function disPlayerPlayer() {
 //adding event listener to player/player
 playerPlayer.addEventListener('click', disPlayerComputer)
 
-//funtion to disable player vs computer box
+//funtion to disable player vs computer box when you click on player vs player
 function disPlayerComputer() {
     // playerComputer.style.display = "none"
+    playerTwoName.style.display = ""
     startButton.disabled = false
     gameMode = 'pvp' // Set the gameMode to player vs player
     console.log(`THE GAMEMODE IS NOW: ${gameMode}`)
