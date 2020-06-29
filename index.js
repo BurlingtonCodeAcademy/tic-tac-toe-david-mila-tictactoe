@@ -8,6 +8,13 @@ let playerTwoName = document.getElementById('playerTwoName')
 let clock = document.getElementById('clock')
 let playerPlayer = document.getElementById('player-player')
 let playerComputer = document.getElementById('player-computer')
+let gameMode
+let randoCellNum
+
+
+function randomNum(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min)
+  }
 
 
 //variable for players
@@ -69,6 +76,8 @@ function disPlayerPlayer() {
     playerPlayer.style.display ="none"
     startButton.disabled = false
     playerTwoName.style.display = "none"
+    gameMode = 'pvc' // set the gameMode to player vs computer
+    console.log(`THE GAMEMODE IS NOW: ${gameMode}`)
 }
 
 //adding event listener to player/player
@@ -78,6 +87,8 @@ playerPlayer.addEventListener('click', disPlayerComputer)
 function disPlayerComputer() {
     playerComputer.style.display = "none"
     startButton.disabled = false
+    gameMode = 'pvp' // Set the gameMode to player vs player
+    console.log(`THE GAMEMODE IS NOW: ${gameMode}`)
 }
 
 //function to update clock
@@ -145,15 +156,11 @@ function clicked(event) {
         console.log(boardArr)
         boardArr.splice(index, 1)
     }
-
-    
-
     if (currentPlayer === 1) {
         event.target.innerHTML = playerOne
         event.target.style.color = "red"
         currentPlayer += 1
         playerOneArr.push(cellNumber)
-
         if (checkWin(playerOneArr) === true) {
             gameStatus.innerHTML = `Congratulations ${playerOneDisplay}! You won!`
             clearInterval(interval)
@@ -165,7 +172,14 @@ function clicked(event) {
             }
             return reStart()
         }
-
+        
+        if(gameMode === 'pvc'){
+            randoCellNum = randomNum(0, boardArr.length-1).toString()
+            randoCell = document.getElementById(boardArr[randoCellNum])
+            randoCell.click()
+            currentPlayer = 1
+        }
+        
     } else {
         event.target.innerHTML = playerTwo
         event.target.style.color = "blue"
@@ -181,8 +195,6 @@ function clicked(event) {
                     cell.style.backgroundColor = "green"
             }
 
-
-
             return reStart()
         }
     }
@@ -196,6 +208,10 @@ function clicked(event) {
     }
     
 }
+
+
+
+
 
 
 
