@@ -10,6 +10,7 @@ let playerPlayer = document.getElementById('player-player')
 let playerComputer = document.getElementById('player-computer')
 let gameMode
 let randoCellNum
+let randoCell
 
 
 function randomNum(min, max) {
@@ -73,7 +74,7 @@ playerComputer.addEventListener('click', disPlayerPlayer)
 
 //funtion to disable player vs player box
 function disPlayerPlayer() {
-    playerPlayer.style.display ="none"
+    // playerPlayer.style.display ="none"
     startButton.disabled = false
     playerTwoName.style.display = "none"
     gameMode = 'pvc' // set the gameMode to player vs computer
@@ -85,7 +86,7 @@ playerPlayer.addEventListener('click', disPlayerComputer)
 
 //funtion to disable player vs computer box
 function disPlayerComputer() {
-    playerComputer.style.display = "none"
+    // playerComputer.style.display = "none"
     startButton.disabled = false
     gameMode = 'pvp' // Set the gameMode to player vs player
     console.log(`THE GAMEMODE IS NOW: ${gameMode}`)
