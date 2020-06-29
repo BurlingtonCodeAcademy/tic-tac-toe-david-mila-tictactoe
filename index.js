@@ -8,6 +8,14 @@ let playerTwoName = document.getElementById('playerTwoName')
 let clock = document.getElementById('clock')
 let playerPlayer = document.getElementById('player-player')
 let playerComputer = document.getElementById('player-computer')
+let gameMode
+let randoCellNum
+
+
+function randomNum(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min)
+  }
+
 
 //variable for players
 let playerOne = "X"
@@ -30,6 +38,8 @@ let playerTwoDisplay = ""
 function start() {
     currentPlayer = 1
     startButton.disabled = true
+
+    
 
     //adding event listener to cell class
     for (let cell of cells) {
@@ -66,6 +76,8 @@ function disPlayerPlayer() {
     playerPlayer.style.display ="none"
     startButton.disabled = false
     playerTwoName.style.display = "none"
+    gameMode = 'pvc' // set the gameMode to player vs computer
+    console.log(`THE GAMEMODE IS NOW: ${gameMode}`)
 }
 
 //adding event listener to player/player
@@ -75,6 +87,8 @@ playerPlayer.addEventListener('click', disPlayerComputer)
 function disPlayerComputer() {
     playerComputer.style.display = "none"
     startButton.disabled = false
+    gameMode = 'pvp' // Set the gameMode to player vs player
+    console.log(`THE GAMEMODE IS NOW: ${gameMode}`)
 }
 
 //function to update clock
@@ -129,7 +143,7 @@ function reStart() {
     playerTwoName.value = ""
 }
 
-//clicked function - when player clicks on cells
+//makeMove function - when player clicks on cells
 function clicked(event) {
     //movesMade += 1 - not using this variable right now
     event.target.removeEventListener('click', clicked)
@@ -137,18 +151,16 @@ function clicked(event) {
     let cellNumber = parseInt(event.target.id)
     let index = boardArr.indexOf(cellNumber)
 
-//remove clicked cell from board array
+
     if (boardArr.includes(cellNumber)) {
         console.log(boardArr)
         boardArr.splice(index, 1)
     }
-
     if (currentPlayer === 1) {
         event.target.innerHTML = playerOne
         event.target.style.color = "red"
         currentPlayer += 1
         playerOneArr.push(cellNumber)
-
         if (checkWin(playerOneArr) === true) {
             gameStatus.innerHTML = `Congratulations ${playerOneDisplay}! You won!`
             clearInterval(interval)
@@ -160,7 +172,14 @@ function clicked(event) {
             }
             return reStart()
         }
-
+        
+        if(gameMode === 'pvc'){
+            randoCellNum = randomNum(0, boardArr.length-1).toString()
+            randoCell = document.getElementById(boardArr[randoCellNum])
+            randoCell.click()
+            currentPlayer = 1
+        }
+        
     } else {
         event.target.innerHTML = playerTwo
         event.target.style.color = "blue"
@@ -181,7 +200,7 @@ function clicked(event) {
     }
 
     showPlayer()
-    //in case of a draw
+
     if (boardArr.length === 0) {
         gameStatus.innerHTML = `It's a draw`
         clearInterval(interval)
