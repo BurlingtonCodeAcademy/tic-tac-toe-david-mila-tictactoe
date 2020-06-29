@@ -173,12 +173,20 @@ function clicked(event) {
             return reStart()
         }
         
+        if (boardArr.length === 0) {
+            gameStatus.innerHTML = `It's a draw`
+            clearInterval(interval)
+            startButton.disabled = false
+        }
+        
         if(gameMode === 'pvc'){
             randoCellNum = randomNum(0, boardArr.length-1).toString()
             randoCell = document.getElementById(boardArr[randoCellNum])
             randoCell.click()
             currentPlayer = 1
         }
+
+        
         
     } else {
         event.target.innerHTML = playerTwo
