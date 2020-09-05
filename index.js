@@ -11,6 +11,9 @@ let playerComputer = document.getElementById('player-computer')
 let gameMode
 let randoCellNum
 let randoCell
+let alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+let nBackMem = []
+let nBackStatus
 
 
 function randomNum(min, max) {
@@ -93,6 +96,13 @@ function disPlayerComputer() {
     console.log(`THE GAMEMODE IS NOW: ${gameMode}`)
 }
 
+function disNback(){
+    startButton.disabled = false
+    gameMode = 'nBack'
+    nBackStatus = true
+    console.log("N-Back mode enabled")
+}
+
 //function to update clock
 function updateClock() {
     clockCount++
@@ -144,6 +154,19 @@ function reStart() {
     playerOneName.value = ""
     playerTwoName.value = ""
 }
+
+function getRandomLetter(){
+    alphabet[Math.floor(Math.random() * alphabet.length)]
+}
+
+
+function nBackStart(){
+    if(nBackStatus === true){
+        console.log("Activated")
+        process.exit()
+    }
+}
+
 
 //makeMove function - when player clicks on cells
 function clicked(event) {
