@@ -1,0 +1,104 @@
+.container {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+  }
+
+  .board-container {
+      display: flex;
+      flex-wrap: wrap;
+      width: 618px;
+  }
+
+  .cell {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 200px;
+      height: 200px;
+      border: 3px solid purple;
+      font-size: 50px;
+  }
+
+  .cell:hover{
+    background-color: pink;
+  } 
+
+  .header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 618px;
+    height: 200px;
+  }
+
+  .status-area {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 618px;
+      height: 200px;
+  }
+
+  #player-names {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 25px;
+  }
+
+  .playerNames {
+    width: 45%;
+  }
+
+  .player-and-computer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 15px;
+    width: 58%;
+  }
+
+  #player-player:hover{
+  color: red;
+  }
+
+  #player-computer:hover{
+    color: red;
+    }
+
+  #player-computer{
+    width: 45%;
+    cursor: pointer;
+  }
+
+  #player-player{
+    padding-left: 15px;
+    width: 45%;
+    cursor: pointer;
+  }
+
+  #clock{
+    padding-top: 20px;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
